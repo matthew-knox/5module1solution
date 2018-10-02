@@ -1,13 +1,13 @@
 (function () {
   'use strict';
 
-  angular.module('LunchChecker', [])
+  angular.module('LunchCheck', [])
 
-  .controller('LunchCheckerController', LunchCheckerController);
+  .controller('LunchCheckController', LunchCheckController);
 
-  LunchCheckerController.$inject = ['$scope'];
+  LunchCheckController.$inject = ['$scope'];
 
-  function LunchCheckerController($scope) {
+  function LunchCheckController($scope) {
     $scope.checkLunch = function () {
       if(!$scope.lunchMeals || 0 === $scope.lunchMeals.length) {
         $scope.customStyle = {
