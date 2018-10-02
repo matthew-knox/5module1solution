@@ -1,45 +1,49 @@
 (function () {
-  'use strict';
+'use strict';
 
-  angular.module('LunchCheck', [])
+angular.module('LunchCheckerApp', [])
 
-  .controller('LunchCheckController', LunchCheckController);
+.controller('LunchCheckerController', LunchCheckerController);
 
-  LunchCheckController.$inject = ['$scope'];
+LunchCheckerController.$inject = ['$scope'];
 
-  function LunchCheckController($scope) {
-    $scope.checkLunch = function () {
-      if(!$scope.lunchMeals || 0 === $scope.lunchMeals.length) {
-        $scope.customStyle = {
-          "color" : "red",
-        }
-        $scope.message = "Please enter data first";
-        return;
+function LunchCheckerController($scope) {
+   $scope.checkLunch = function () {
+     // doing empty string check
+     if(!$scope.lunchMeals || 0 === $scope.lunchMeals.length ){
+       $scope.customStyle = {
+        "color" : "red",
       }
+       $scope.message = "Please enter data first";
+       return;
+     }
 
-      setLunchItemSize($scope);
+     setLunchItemSize($scope);
 
-      if($scope.lunchItemSize > 3) {
-        $scope.customStyle = {
+     if($scope.lunchItemSize> 3){
+         $scope.customStyle = {
           "color" : "red",
         }
         $scope.message = "Too much!";
-      }
-      else {
-        $scope.customStyle = {
+     }
+     else{
+         $scope.customStyle = {
           "color" : "green",
         }
         $scope.message = "Enjoy!";
-      }
-    };
+     }
 
-    function setLunchItemSize($scope) {
-      var array = $scope.lunchMeals.split(',');
-      var lunchItemSize = 0;
-      for (var i = 0; i < array.length; i++) {
-        if (array[i] && 0 < array[i].length) lunchItemSize++;
-      }
-      $scope.lunchItemSize = lunchItemSize;
-    }
-  }
+   };
+
+   function setLunchItemSize($scope) {
+     var array = $scope.lunchMeals.split(',');
+     var lunchItemSize= 0;
+     for(var i=0; i<array.length; i++){
+       if(array[i] &&  0 < array[i].length)
+        lunchItemSize++;
+     }
+     $scope.lunchItemSize = lunchItemSize;
+   }
+}
+
 })();
